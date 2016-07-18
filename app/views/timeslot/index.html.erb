@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>EventBooking</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+    <div class="container">
+    	<% @timeslots.each do |timeslot| %>
+    			<h2 class="content"><%= timeslot.start %></h2>
+          <% timeslot.openings.each do |opening| %>
+          <div class="col-xs-2"><h4>Venue: </h4><p><%= opening.venue.name %></p>
+          <%= link_to "Book", bookings_new_path(:opening_id => opening.id) %>
+        </div>
+          <% end %>
+  		<% end %>
+    </div>
+</body>
+</html>

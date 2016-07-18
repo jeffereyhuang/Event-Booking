@@ -1,0 +1,21 @@
+<div class="container">
+  <% @bookings.each do |booking| %>
+    <div class="col-xs-12">
+      <div class="container">
+        <h1>Status:
+          <% if booking.approved.nil? %>
+            <%= "Pending" %>
+          <%else%>
+            <%= booking.approved ? "Approved" : "Denied"%>
+          <% end %>
+        </h1>
+        Venue: <%= booking.opening.venue.name %><br />
+        Timeslot: <span class="timestring"><%= booking.opening.timeslot.start %></span><br />
+        Host: <%= booking.host %><br />
+        Capacity: <%= booking.capacity %><br />
+
+        <%= link_to 'Approve', booking_approve_path(booking), :class=> "btn btn-success"%>&nbsp;<%= link_to 'Deny', booking_deny_path(booking) , :class=> "btn btn-danger"%>
+      </div>
+    </div>
+  <%end %>
+</div>

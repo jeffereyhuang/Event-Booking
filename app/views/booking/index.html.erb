@@ -1,0 +1,22 @@
+<div class="header">
+      <h1>Bookings</h1>
+  </div>
+  <div class="container">
+    <% @bookings.each do |booking| %>
+  		<div class="booking">
+        <h1>Status: <% if booking.approved.nil? %>
+          <%= "Pending" %>
+        <%else%>
+        <%= booking.approved ? "Approved" : "Denied"%>
+        <% end %>
+        </h1>
+        <h3>Venue:</h3><p><%= booking.opening.venue.name %></p>
+        <h3>Start Time:</h3><p><%= booking.opening.timeslot.start %></p>
+        <h3>End Time:</h3><p><%= booking.opening.timeslot.end %></p>
+        <h3>Host:</h3><p><%= booking.host %></p>
+        <h3>Number of Guests:<p></h3><%= booking.capacity %></p>
+        <h3>Description:</h3><p><%= booking.description %></p>
+  		</div>
+  	<% end %>
+    <%= link_to "Back to Venues", "/browsevenue" %><%= link_to "Back to Timeslots", "/browsetime" %>
+  </div>

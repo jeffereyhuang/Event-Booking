@@ -1,0 +1,14 @@
+<div class="container">
+    <h3>Venue: </h3><p><%= @opening.venue.name %><br /></p>
+    <h3>Start-Time: </h3><p><%= @opening.timeslot.start %><br /></p>
+    <h3>End-Time: </h3><%= @opening.timeslot.end %><br /></p>
+    <%= form_for(@booking) do |b| %>
+    <%=b.hidden_field :opening_id, :value => @opening.id%><br />
+      Host: <%= b.text_field :host %><br />
+      Capacity: <%= b.text_field :capacity %><br />
+      Description (Optional): <%= b.text_area :description %><br />
+      <%= b.submit %>
+    </br>
+    <%= link_to "Browse by Venues", "/browsevenue" %><%= link_to "Browse by Timeslots", "/browsetime" %>
+  <%end %>
+  </div>
